@@ -73,7 +73,7 @@ public class UsersController {
             return "login/login";
         }
         if (users.getSfPass().equals(password)) {
-            return "dashboard";
+            return "redirect:dashboard";
         } else {
             modelMap.addAttribute("errorMsg", "Username or Password isn't Correct!!");
             return "login/login";

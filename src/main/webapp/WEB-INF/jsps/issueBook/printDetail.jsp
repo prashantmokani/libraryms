@@ -19,13 +19,15 @@
 </head>
 <body>
 <jsp:include page="../templates/navbar.jsp"></jsp:include>
-<h4 class="font-weight-bold text-danger">${borrowerData.book.bkTitle} Issued to ${borrowerData.student.firstName}</h5>
-Issue Id : ${borrowerData.id} <br>
-Book Title : ${borrowerData.book.bkTitle} <br>
-Issued To : ${borrowerData.student.firstName} ${borrowerData.student.lastName}<br>
-Issued From : ${borrowerData.users.sfFname} ${borrowerData.users.sfLname}<br>
-Issue Date : ${borrowerData.releaseDate}<br>
-Due Date: ${borrowerData.dueDate}<br>
+<h4 class="font-weight-bold text-danger">${borrowerData.book.bkTitle} Issued to ${borrowerData.student.firstName}</h4>
+<div class="text-center align-content-center">
+    Issue Id : ${borrowerData.id} <br>
+    Book Title : ${borrowerData.book.bkTitle} <br>
+    Issued To : ${borrowerData.student.firstName} ${borrowerData.student.lastName}<br>
+    Issued From : ${borrowerData.users.sfFname} ${borrowerData.users.sfLname}<br>
+    Issue Date : ${borrowerData.releaseDate}<br>
+    Due Date: ${borrowerData.dueDate}<br>
+</div>
 
 <a href="showIssueBook" class="btn btn-danger">Issue New Book</a>
 <jsp:include page="../templates/footer.jsp"></jsp:include>
