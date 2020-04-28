@@ -4,6 +4,7 @@ import com.prashant.liberarymgmt.dto.BorrowerRequest;
 import com.prashant.liberarymgmt.entities.ActiveBorrowers;
 import com.prashant.liberarymgmt.entities.Book;
 import com.prashant.liberarymgmt.entities.Borrowers;
+import com.prashant.liberarymgmt.entities.Student;
 import com.prashant.liberarymgmt.repos.ActiveBorrowersRepository;
 import com.prashant.liberarymgmt.repos.BookRepository;
 import com.prashant.liberarymgmt.repos.BorrowersRepository;
@@ -23,6 +24,8 @@ public class BorrowersController {
 
     @Autowired
     private BookRepository bookRepository;
+    @Autowired
+    private StudentRepository studentRepository;
     @Autowired
     private BorrowersRepository borrowersRepository;
     @Autowired
@@ -49,7 +52,9 @@ public class BorrowersController {
     @RequestMapping("/bookIssue")
     public String showBorrowersForm(@RequestParam Long bookId, ModelMap modelMap){
         Book getOneBook = bookRepository.findById(bookId).get();
+        List<Student> studentList = studentRepository.findAll();
         modelMap.addAttribute("bookData",getOneBook);
+        modelMap.addAttribute("studentData",studentList);
         return "issueBook/borrowersForm";
     }
 

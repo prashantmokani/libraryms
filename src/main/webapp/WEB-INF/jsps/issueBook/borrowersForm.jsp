@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +34,13 @@
 
         </div>
         <div class="col-lg-4">
-            <input type="text" class="form-control m-2" placeholder="Enter Student Id" name="stId" required>
+            <select name="stId" id="stId" class="form-control m-2" required="required">
+                <option value="default">Select Student</option>
+                <c:forEach items="${studentData}" var="student">
+                    <option value=${student.id}>${student.id} ${student.firstName} ${student.lastName}</option>
+                </c:forEach>
+            </select>
+            <%--<input type="text" class="form-control m-2" placeholder="Enter Student Id" name="stId" required>--%>
         </div>
         <div class="col-lg-4">
             <input type="text" class="form-control m-2" placeholder="Enter Staff Id" name="sfId" required>
@@ -53,15 +61,18 @@
 </form>
 <jsp:include page="../templates/footer.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<%--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 <script type="text/javascript">
-    $(function() {
-        $("#releaseDate").datepicker({ dateFormat: "mm/dd/yy" }).val();
-        $("#dueDate").datepicker({ dateFormat: "mm/dd/yy" }).val();
+    $(document).ready(function () {
+        var now = new Date();
 
+        var day = ("0" + now.getDate()).slice(-2);
+        var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+        var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+
+        $('#releaseDate').val(today);
     });
-</script>--%>
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="js/main.js"></script>
