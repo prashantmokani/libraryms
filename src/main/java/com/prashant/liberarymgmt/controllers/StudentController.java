@@ -59,9 +59,9 @@ public class StudentController {
         }
     }
 
-    @RequestMapping("/viewAllStudents")
+    /*@RequestMapping("/viewAllStudents")
     public String showAllStudent(ModelMap modelMap){
-        /*List<Student> studentList = studentService.showStudentList();*/
+        *//*List<Student> studentList = studentService.showStudentList();*//*
 
         Pageable pageable = PageRequest.of(0,10);
         Page<Student> page = studentRepository.findAll(pageable);
@@ -71,10 +71,10 @@ public class StudentController {
         modelMap.addAttribute("noOfPages",noOfPages);
         modelMap.addAttribute("currentPage", 1);
         return "student/studentlist";
-    }
-    /*@RequestMapping("/viewAllStudentPage")
+    }*/
+    @RequestMapping("/viewAllStudentPage")
     public String showAllStudentPage(@RequestParam("page") int pageNo, ModelMap modelMap){
-        *//*List<Student> studentList = studentService.showStudentList();*//*
+        /*List<Student> studentList = studentService.showStudentList();*/
 
         Pageable pageable = PageRequest.of(pageNo-1,5);
         Page<Student> page = studentRepository.findAll(pageable);
@@ -84,7 +84,7 @@ public class StudentController {
         modelMap.addAttribute("noOfPages",noOfPages);
         modelMap.addAttribute("currentPage", pageNo);
         return "student/studentlist";
-    }*/
+    }
 
     @RequestMapping(value = "/searchStudent",method = RequestMethod.POST)
     public String searchResult(@RequestParam("srchTxt")String srchTxt, ModelMap modelMap){
