@@ -14,7 +14,7 @@
             <li>
                 <a id="studentDropdown" role="button" data-toggle="dropdown" aria-expanded="false" ><span class="fa fa-group mr-3"></span>Student</a>
                 <div class="dropdown-menu text-info bg-dark" aria-labelledby="studentDropdown">
-                    <a class="dropdown-item" href="viewAllStudents">Student List</a>
+                    <a class="dropdown-item" href="viewAllStudentPage?page=1">Student List</a>
                     <a class="dropdown-item" href="studentReg">Student Registration</a>
                 </div>
             </li>

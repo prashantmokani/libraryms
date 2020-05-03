@@ -70,7 +70,7 @@
         </div>
         <div class="align-content-center">
             <input type="submit" onclick="return Validate()" value="Register" role="button" class="btn btn-danger m-4"  >
-            <a href="viewAllStudents" role="button" class="btn btn-info m-4 text-center">View All Students</a>
+            <a href="viewAllStudentPage?page=1" role="button" class="btn btn-info m-4 text-center">View All Students</a>
         </div>
     </form>
 

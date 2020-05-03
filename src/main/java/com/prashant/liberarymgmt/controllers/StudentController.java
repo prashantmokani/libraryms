@@ -7,6 +7,9 @@ import com.prashant.liberarymgmt.repos.CourseRepository;
 import com.prashant.liberarymgmt.repos.StudentRepository;
 import com.prashant.liberarymgmt.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -58,15 +61,38 @@ public class StudentController {
 
     @RequestMapping("/viewAllStudents")
     public String showAllStudent(ModelMap modelMap){
-        List<Student> studentList = studentService.showStudentList();
-        modelMap.addAttribute("stdList",studentList);
+        /*List<Student> studentList = studentService.showStudentList();*/
+
+        Pageable pageable = PageRequest.of(0,10);
+        Page<Student> page = studentRepository.findAll(pageable);
+        int noOfElements  = page.getNumberOfElements();
+        int noOfPages = page.getTotalPages();
+        modelMap.addAttribute("stdList",page.getContent());
+        modelMap.addAttribute("noOfPages",noOfPages);
+        modelMap.addAttribute("currentPage", 1);
         return "student/studentlist";
     }
+    /*@RequestMapping("/viewAllStudentPage")
+    public String showAllStudentPage(@RequestParam("page") int pageNo, ModelMap modelMap){
+        *//*List<Student> studentList = studentService.showStudentList();*//*
+
+        Pageable pageable = PageRequest.of(pageNo-1,5);
+        Page<Student> page = studentRepository.findAll(pageable);
+        int noOfElements  = page.getNumberOfElements();
+        int noOfPages = page.getTotalPages();
+        modelMap.addAttribute("stdList",page.getContent());
+        modelMap.addAttribute("noOfPages",noOfPages);
+        modelMap.addAttribute("currentPage", pageNo);
+        return "student/studentlist";
+    }*/
 
     @RequestMapping(value = "/searchStudent",method = RequestMethod.POST)
     public String searchResult(@RequestParam("srchTxt")String srchTxt, ModelMap modelMap){
         List<Student> studentList = studentRepository.findAllStudents(srchTxt);
         modelMap.addAttribute("stdList",studentList);
+        if(studentList.equals(null)){
+            modelMap.addAttribute("error","Student with searched name not found.");
+        }
         return "student/studentlist";
     }
 
