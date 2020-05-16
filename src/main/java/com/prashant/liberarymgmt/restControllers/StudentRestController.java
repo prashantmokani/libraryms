@@ -1,16 +1,15 @@
 package com.prashant.liberarymgmt.restControllers;
 
 import com.prashant.liberarymgmt.dto.StudentUpdateRequest;
+import com.prashant.liberarymgmt.entities.Borrowers;
 import com.prashant.liberarymgmt.entities.Course;
 import com.prashant.liberarymgmt.entities.Student;
+import com.prashant.liberarymgmt.repos.BorrowersRepository;
 import com.prashant.liberarymgmt.repos.CourseRepository;
 import com.prashant.liberarymgmt.repos.StudentRepository;
 import com.prashant.liberarymgmt.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +21,8 @@ public class StudentRestController {
     StudentService studentService;
     @Autowired
     CourseRepository courseRepository;
+    @Autowired
+    BorrowersRepository borrowersRepository;
 // GET => READ Rest Method to get all the student
     @RequestMapping("/getStudents/{id}")
     public Student findStudents(@PathVariable("id") Long id){
@@ -47,6 +48,12 @@ public class StudentRestController {
         student.setStContact(studentUpdateRequest.getStContact());
         student.setStYear(studentUpdateRequest.getStYear());
         return studentRepository.save(student);
+    }
+
+    @RequestMapping("/getIssuedBookByStudent")
+    public List<Borrowers> getAllBookByStudent(@RequestParam("sId") Long sId){
+        Student student = studentRepository.findById(sId).get();
+        return borrowersRepository.findAllIssuedBookByStudent(student);
     }
 
 }
