@@ -35,7 +35,7 @@
     </div>
 </form>
 
-<table class="display" id="bookTable" >
+<table class="display table table-borderless table-striped table-responsive-sm" id="bookTable" >
     <tr>
         <th>Book Title</th>
         <th>Edition</th>
@@ -84,11 +84,6 @@ ${viewAllButton}
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
-    $(document).ready( function () {
-        $('#bookTable').DataTable({
-            "pagingType": "full_numbers"
-        });
-    } );
     $(function () {
         $(".identifyingClass").click(function () {
             var my_id_value = $(this).data('id');
