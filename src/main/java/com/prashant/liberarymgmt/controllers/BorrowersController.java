@@ -43,7 +43,7 @@ public class BorrowersController {
     }
     @RequestMapping("/searchBookList")
     public String searchBookIssue(@RequestParam("srchTxt")String srchTxt,ModelMap modelMap){
-        List<Book> bookList = bookRepository.findAllBook(srchTxt);
+        List<Book> bookList = bookRepository.findAllBooksByBkTitleContaining(srchTxt);
         modelMap.addAttribute("bookList",bookList);
         modelMap.addAttribute("viewAllButton","<a href=\"showIssueBook\" role=\"button\" class=\"btn btn-danger m-4 text-center\">View All Books</a>");
         return "issueBook/bookListForIssue";

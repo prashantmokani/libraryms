@@ -1,13 +1,11 @@
 package com.prashant.liberarymgmt.controllers;
 
 import com.prashant.liberarymgmt.entities.Book;
-import com.prashant.liberarymgmt.entities.Student;
 import com.prashant.liberarymgmt.repos.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -61,7 +59,7 @@ public class BookController {
 
     @RequestMapping("/searchBook")
     public String searchResult(@RequestParam("srchTxt")String srchTxt, ModelMap modelMap){
-        List<Book> bookList = bookRepository.findAllBook(srchTxt);
+        List<Book> bookList = bookRepository.findAllBooksByBkTitleContaining(srchTxt);
         modelMap.addAttribute("bookList",bookList);
         modelMap.addAttribute("viewAllButton","<a href=\"showBookList\" role=\"button\" class=\"btn btn-danger m-4 text-center\">View All Books</a>");
         return "book/booklist";

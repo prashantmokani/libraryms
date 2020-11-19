@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="./css/style.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Karla&display=swap" rel="stylesheet">
     <style>
@@ -34,7 +35,7 @@
     </div>
 </form>
 
-<table class="table table-borderless table-responsive-sm table-striped">
+<table class="display" id="bookTable" >
     <tr>
         <th>Book Title</th>
         <th>Edition</th>
@@ -78,17 +79,23 @@ ${viewAllButton}
 
 </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="js/main.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $(".identifyingClass").click(function () {
-                var my_id_value = $(this).data('id');
-                $("#deleteButton"). attr("href","deleteBook?bId="+my_id_value);
-            })
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+    $(document).ready( function () {
+        $('#bookTable').DataTable({
+            "pagingType": "full_numbers"
         });
-    </script>
+    } );
+    $(function () {
+        $(".identifyingClass").click(function () {
+            var my_id_value = $(this).data('id');
+            $("#deleteButton"). attr("href","deleteBook?bId="+my_id_value);
+        })
+    });
+</script>
+<script src="js/main.js"></script>
 </body>
 </html>

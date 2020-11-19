@@ -9,8 +9,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
-    @Query("from Book where bkTitle = :bkTitle")
-    List<Book> findAllBook(@Param("bkTitle") String srchTxt);
+    //@Query("from Book where bkTitle =: bkTitle")
+    List<Book> findAllBooksByBkTitleContaining(String searchText);
     @Query("SELECT SUM(b.bkCopies) FROM Book b")
     int totalBooks();
     @Query("SELECT SUM(b.bkAvailable) FROM Book b")
