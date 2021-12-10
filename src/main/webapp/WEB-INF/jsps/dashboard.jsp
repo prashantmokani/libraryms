@@ -49,7 +49,7 @@
                         <img src="https://img.icons8.com/ios-filled/64/000000/book.png"/>
                     </div>
                     <div class="col-4 m-auto">
-                        <span class="text-info font-weight-bold largeText">${toalAvailableBooks}</span>
+                        <span class="text-info font-weight-bold largeText">${totalAvailableBooks}</span>
                     </div>
                 </div>
             </div>

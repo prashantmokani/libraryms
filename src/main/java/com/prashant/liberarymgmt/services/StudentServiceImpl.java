@@ -20,7 +20,7 @@ public class StudentServiceImpl implements StudentService {
     StudentRepository studentRepository;
     @Override
     public Student saveStudent(StudentRequest request) {
-        long course_id = request.getCourseid();
+        long course_id = request.getCourseId();
         Course getCourse = courseRepository.findById(course_id).get();
 
         Student student = new Student();

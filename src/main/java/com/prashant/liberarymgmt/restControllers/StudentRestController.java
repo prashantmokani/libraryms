@@ -41,7 +41,7 @@ public class StudentRestController {
         student.setMiddleName(studentUpdateRequest.getMiddleName());
         student.setLastName(studentUpdateRequest.getLastName());
         student.setAge(studentUpdateRequest.getAge());
-        Long courseId = studentUpdateRequest.getCourseid();
+        Long courseId = studentUpdateRequest.getCourseId();
         Course course = courseRepository.findById(courseId).get();
         student.setCourse(course);
         student.setBirthDate(studentUpdateRequest.getBirthDate());

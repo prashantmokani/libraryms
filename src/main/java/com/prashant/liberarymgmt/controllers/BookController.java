@@ -21,7 +21,6 @@ public class BookController {
     public String showBookList(ModelMap modelMap) {
         List<Book> bookList = bookRepository.findAll();
         modelMap.addAttribute("bookList", bookList);
-
         return "book/booklist";
     }
 
